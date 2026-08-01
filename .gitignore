@@ -1,0 +1,15 @@
+# Ejecutables de Windows y temporales de compilación
+*.exe
+*.o
+*.obj
+
+# Archivos de configuración local de VS Code (dejamos el tasks.json fuera)
+.vscode/*
+!.vscode/tasks.json
+
+# Basura del sistema y editores
+.vs/
+.idea/
+*.suo
+*.user
+Thumbs.db
