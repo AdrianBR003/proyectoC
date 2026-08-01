@@ -26,12 +26,33 @@ void Game::Run(){
 }
 
 void Game::Update(){
-    if(IsKeyDown(KEY_RIGHT)) coor_x += speed * GetFrameTime();
-    if(IsKeyDown(KEY_LEFT)) coor_x -= speed * GetFrameTime();
-    if(IsKeyDown(KEY_DOWN)) coor_y += speed * GetFrameTime(); // Sumar para bajar
-    if(IsKeyDown(KEY_UP)) coor_y -= speed * GetFrameTime();   // Restar para subir
-}
+    TraceLog(LOG_INFO, "Coordenada X %.2f -- Coordenada Y %.2f ", coor_x, coor_y);
 
+    if(IsKeyDown(KEY_RIGHT)){
+        if(coor_x < 800 - size){
+            coor_x += speed * GetFrameTime();
+        }
+    } 
+
+    if(IsKeyDown(KEY_LEFT)){
+        if(coor_x > 0){
+            coor_x -= speed * GetFrameTime();
+        }
+    } 
+
+    if(IsKeyDown(KEY_DOWN)){
+        if(coor_y < 600 - size){
+        coor_y += speed * GetFrameTime();
+        }
+    }  
+
+    if(IsKeyDown(KEY_UP)){
+        if(coor_y > 0){
+            coor_y -= speed * GetFrameTime();
+        }
+    } 
+}
+ 
 void Game::Draw(){
     BeginDrawing();
     ClearBackground(RAYWHITE);
