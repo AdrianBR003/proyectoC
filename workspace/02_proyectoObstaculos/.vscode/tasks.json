@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar Proyecto Activo (Debug)",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/C",
+                "set \"PATH=C:\\raylib\\w64devkit\\bin;%PATH%\" && mingw32-make.exe TARGET_FILE=\"${file}\" BUILD_MODE=DEBUG"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Compilar Proyecto Activo (Release)",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/C",
+                "set \"PATH=C:\\raylib\\w64devkit\\bin;%PATH%\" && mingw32-make.exe TARGET_FILE=\"${file}\" BUILD_MODE=RELEASE"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
