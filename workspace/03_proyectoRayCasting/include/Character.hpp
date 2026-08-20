@@ -2,18 +2,33 @@
 #include <string>
 #include <vector> 
 #include <raylib.h>
+#include <Map.hpp>
 
 class Character{
     private:
 
         float ch_speed; 
         std::string ch_name; 
-        float ch_vision_distance;
         Rectangle ch_rectangle;         
+        
+        // Cono de vision
+        float ch_vision_distance; // Distancia maxima vision
+        float ch_vision_angle; // Angulo central hacia donde mira (rad)
+        float ch_fov; // Cambio de vision total
+
+        std::vector<Vector2> vision_points; // Cono de vision compueto de vectores (lineas)
+
 
     public: 
-        Character(Rectangle rectangle, float vision_distance, std::string name, float speed);
+        Character(Rectangle rectangle, float vision_distance, float vision_angle, float fov, std::string name, float speed);
         ~Character();
+
+    // Metodos Cono vision
+
+        void UpdateVision(const Map& mapa, int size_pixel);
+        void DrawVision() const; 
+
+    // Metodos genericos
 
     Rectangle getFutureBounds(int game_width_pixel, int game_height_pixel, int size_map); 
 

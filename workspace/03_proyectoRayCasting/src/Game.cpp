@@ -19,8 +19,10 @@ Game::Game(int width_screen, int height_screen, const std::string& title_screen,
     // objetos como mapa, character y demas. Le pasamos las variables para el tamanyo y demas SERIALIZADAS
 
     mapaComplete(game_width_pixel, game_height_pixel, game_pixel_size),
-    character({static_cast<float>(3*game_pixel_size),static_cast<float>(3*game_pixel_size),static_cast<float>(1*game_pixel_size),static_cast<float>(1*game_pixel_size)}, 4, "Heroe", 100),
-    centinela({static_cast<float>(5*game_pixel_size),static_cast<float>(5*game_pixel_size),static_cast<float>(1*game_pixel_size),static_cast<float>(1*game_pixel_size)}, 4, "Centinela", 100)
+    character({static_cast<float>(3*game_pixel_size),static_cast<float>(3*game_pixel_size),static_cast<float>(1*game_pixel_size),static_cast<float>(1*game_pixel_size)},
+     250.0f, (90.0f * (PI / 180.0f)), 60.0f, "Heroe", 100),
+    centinela({static_cast<float>(3*game_pixel_size),static_cast<float>(3*game_pixel_size),static_cast<float>(1*game_pixel_size),static_cast<float>(1*game_pixel_size)},
+     250.0f, (90.0f * (PI / 180.0f)), 60.0f, "Centinela", 100)
     {
 
     // Init Window
@@ -85,6 +87,10 @@ void Game::Update(){
         TraceLog(LOG_INFO, "COLISION DETECTADA!");
     }
 
+    // Calculo del RayCasting 
+
+    character.UpdateVision(mapaComplete, game_pixel_size);
+    centinela.UpdateVision(mapaComplete, game_pixel_size);
 }
 
 void Game::Draw(){
@@ -104,6 +110,11 @@ void Game::Draw(){
     // Dibujar el personaje lo ultimo para evitar que lo tapen 
     DrawRectangle(character.getPosX(), character.getPosY(), character.getSize(), character.getSize(), RED);
     DrawRectangle(centinela.getPosX(), centinela.getPosY(), centinela.getSize(), centinela.getSize(), PURPLE);
+
+    // Raycasting 
+
+    character.DrawVision();
+    centinela.DrawVision();
 
     EndDrawing();
 }
