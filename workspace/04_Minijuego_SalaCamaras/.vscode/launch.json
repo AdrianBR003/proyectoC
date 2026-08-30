@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Depurar Proyecto Activo (GDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/../main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}/..",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\raylib\\w64devkit\\bin\\gdb.exe",
+            "preLaunchTask": "Compilar Proyecto Activo (Debug)",
+            "setupCommands": [
+                {
+                    "description": "Habilitar formato elegante para gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
